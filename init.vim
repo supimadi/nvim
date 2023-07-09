@@ -284,12 +284,21 @@ endif
 " Autocmd
 
 " Build after save rst file
-if has("win32")
-  autocmd BufWritePost *.rst term ..\make.bat html 
-else
-  autocmd BufWritePost *.rst term ..\make html 
-endif
+autocmd BufWritePost *.rst call BuildSphinxDoc()
 
+function BuildSphinxDoc()
+  let w:winview = winsaveview()
+
+  if has("win32")
+    term ..\make.bat html
+  else
+    term ../make html
+  endif
+
+  if exists('w:winview')
+    call winrestview(w:winview)
+  endif
+endfunction
 
 " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " vim: set ft=vim :
