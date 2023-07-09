@@ -15,6 +15,9 @@ Plug 'itchyny/vim-gitbranch'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Image viwer
+Plug 'edluffy/hologram.nvim'
+
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -277,6 +280,16 @@ map <C-o> :NERDTreeToggle<CR>
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" Autocmd
+
+" Build after save rst file
+if has("win32")
+  autocmd BufWritePost *.rst term ..\make.bat html 
+else
+  autocmd BufWritePost *.rst term ..\make html 
+endif
+
 
 " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " vim: set ft=vim :
