@@ -230,6 +230,9 @@ nnoremap <silent> <space>bf :BLines<CR>
 nnoremap <silent> <space>rg :Rg<CR>
 nnoremap <silent> <space>hf :History<CR>
 
+" Opening python 'main.py' file
+nnoremap <silent> <space>op :term py main.py<CR>
+
 " Code folding
 nnoremap <silent> <space>cfi :set foldenable<bar>foldmethod=indent<CR>
 nnoremap <silent> <space>cfd :set nofoldenable<CR>
@@ -284,7 +287,7 @@ endif
 " Autocmd
 
 " Build after save rst file
-autocmd BufWritePost *.rst call BuildSphinxDoc()
+" autocmd BufWritePost *.rst call BuildSphinxDoc()
 
 function BuildSphinxDoc()
   let w:winview = winsaveview()
